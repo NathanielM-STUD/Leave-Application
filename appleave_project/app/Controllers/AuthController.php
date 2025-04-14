@@ -6,17 +6,8 @@ use App\Models\UserModel;
 
 class AuthController extends BaseController
 {
-     public function index()
-    {
-        return view('employee/dashboard');
-    }
-
-<<<<<<< HEAD
-    public function registerProcess()
-=======
-
+    
     public function __construct()
->>>>>>> be1d63d819cd591449917789ec865a99a23245cf
     {
         // Ensure that only non-logged-in users can access register and login pages
         if (session()->get('is_logged_in')) {
@@ -38,9 +29,6 @@ class AuthController extends BaseController
     }
     
 
-<<<<<<< HEAD
-    public function loginProcess()
-=======
     public function createUser()
 {
     // Get input data
@@ -82,15 +70,14 @@ class AuthController extends BaseController
         return redirect()->back()->with('error', 'There was an issue saving your data. Please try again.');
     }
 
-    // Log the successful registration and redirect
-    log_message('debug', 'User registration successful, redirecting to login.');
+    // Log successful user registration
+    log_message('debug', 'User registration successful for email: ' . $email);
 
+    // Redirect to login page with success message
     return redirect()->to('/login')->with('success', 'Registration successful! You can now log in.');
 }
 
-
     public function authenticate()
->>>>>>> be1d63d819cd591449917789ec865a99a23245cf
     {
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');

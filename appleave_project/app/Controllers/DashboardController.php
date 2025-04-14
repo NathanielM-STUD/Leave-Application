@@ -6,7 +6,7 @@ class DashboardController extends BaseController
 {
     public function __construct()
     {
-        // Ensure that the user is logged in to access the dashboard
+        // Ensure that the user is logged in to access the dashboardqq
         if (!session()->get('is_logged_in')) {
             return redirect()->to('/login'); // Redirect to login if not logged in
         }
