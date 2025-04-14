@@ -6,74 +6,113 @@ use App\Models\UserModel;
 
 class AuthController extends BaseController
 {
-    public function register()
+     public function index()
     {
-        return view('auth/register');
+        return view('employee/dashboard');
     }
 
+<<<<<<< HEAD
     public function registerProcess()
+=======
+
+    public function __construct()
+>>>>>>> be1d63d819cd591449917789ec865a99a23245cf
     {
-        $session = session();
-        $model = new UserModel();
-
-        // Define validation rules
-        $rules = [
-            'fullname' => 'required|min_length[3]|max_length[100]',
-            'email' => 'required|valid_email|is_unique[users.email]',
-            'username' => 'required|min_length[3]|max_length[50]|is_unique[users.username]',
-            'password' => 'required|min_length[8]',
-            'confirm_password' => 'required|matches[password]',
-        ];
-
-        // Validate the input data
-        if (!$this->validate($rules)) {
-            // Validation failed, redirect back with errors
-            return redirect()->back()->withInput()->with('error', 'Please fill in all fields correctly.');
+        // Ensure that only non-logged-in users can access register and login pages
+        if (session()->get('is_logged_in')) {
+            return redirect()->to('/dashboard');  // Redirect to dashboard or home if logged in
         }
+    }
 
-        // Validation passed, proceed with registration
-        $data = [
-            'fullname' => $this->request->getPost('fullname'),
-            'email' => $this->request->getPost('email'),
-            'username' => $this->request->getPost('username'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-        ];
-
-        if ($model->save($data)) {
-            // Registration successful
-            $session->setFlashdata('success', 'Registration successful! You can now log in.');
-            return redirect()->to('/login');
-        } else {
-            // Registration failed
-            $session->setFlashdata('error', 'Registration failed. Please try again.');
-            return redirect()->back()->withInput();
-        }
+    public function register()
+    {
+        // This method will now only be available to users who are not logged in
+        return view('auth/register');
     }
 
     public function login()
     {
+        // Log if login is accessed
+        log_message('info', 'Login page accessed');
         return view('auth/login');
     }
+    
 
+<<<<<<< HEAD
     public function loginProcess()
+=======
+    public function createUser()
+{
+    // Get input data
+    $name = $this->request->getPost('name');
+    $gender = $this->request->getPost('gender');
+    $position = $this->request->getPost('position');
+    $email = $this->request->getPost('email');
+    $password = $this->request->getPost('password');
+    $confirmPassword = $this->request->getPost('confirm_password');
+
+    // Validate inputs
+    if ($password !== $confirmPassword) {
+        return redirect()->back()->with('error', 'Passwords do not match');
+    }
+
+    // Password pattern: 6 letters and 2 numbers
+    if (!preg_match('/^(?=.*[A-Za-z]{6,})(?=.*\d{2,})/', $password)) {
+        return redirect()->back()->with('error', 'Password must contain at least 6 letters and 2 numbers');
+    }
+
+    $userModel = new UserModel();
+
+    // Check if email already exists
+    if ($userModel->where('email', $email)->first()) {
+        return redirect()->back()->with('error', 'Email already registered');
+    }
+
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Create the user
+    if (!$userModel->save([
+        'name' => $name,
+        'gender' => $gender,
+        'position' => $position,
+        'email' => $email,
+        'password' => $hashedPassword,
+    ])) {
+        return redirect()->back()->with('error', 'There was an issue saving your data. Please try again.');
+    }
+
+    // Log the successful registration and redirect
+    log_message('debug', 'User registration successful, redirecting to login.');
+
+    return redirect()->to('/login')->with('success', 'Registration successful! You can now log in.');
+}
+
+
+    public function authenticate()
+>>>>>>> be1d63d819cd591449917789ec865a99a23245cf
     {
-        $session = session();
-        $model = new UserModel();
         $email = $this->request->getPost('email');
-        $raw_password = $this->request->getPost('password');
+        $password = $this->request->getPost('password');
 
-        $user = $model->where('email', $email)->first();
+        $userModel = new UserModel();
 
-        if ($user && password_verify($raw_password, $user['password'])) {
-            $session->set([
-                'user_id' => $user['id'],
-                'username' => $user['username'],
-                'logged_in' => true
-            ]);
-            return redirect()->to('/dashboard');
-        } else {
-            return redirect()->back()->with('error', 'Invalid email or password.');
+        // Find user by email
+        $user = $userModel->where('email', $email)->first();
+
+        if (!$user || !password_verify($password, $user['password'])) {
+            return redirect()->back()->with('error', 'Invalid email or password');
         }
+
+        // Set session data and log in the user
+        session()->set([
+            'user_id' => $user['id'],
+            'user_name' => $user['name'],
+            'user_email' => $user['email'],
+            'is_logged_in' => true,
+        ]);
+
+        return redirect()->to('/dashboard');
     }
 
     public function logout()
