@@ -11,7 +11,7 @@ class AuthController extends BaseController
         return view('auth/register');
     }
 
-    public function registerPost()
+    public function registerProcess()
     {
         $session = session();
         $model = new UserModel();
@@ -55,7 +55,7 @@ class AuthController extends BaseController
         return view('auth/login');
     }
 
-    public function loginPost()
+    public function loginProcess()
     {
         $session = session();
         $model = new UserModel();

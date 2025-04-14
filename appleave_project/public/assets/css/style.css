@@ -1,0 +1,117 @@
+:root {
+    --sidebar-bg: #f8f9fa;
+    --primary-color: #4e73df;
+    --secondary-color: #1cc88a;
+    --dark-color: #5a5c69;
+}
+        
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fc;
+}
+        
+.sidebar {
+    background-color: var(--sidebar-bg);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    transition: all 0.3s;
+}
+        
+.sidebar .profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+        
+.sidebar .nav-link {
+    color: var(--dark-color);
+    border-radius: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+        
+.sidebar .nav-link:hover {
+    background-color: rgba(78, 115, 223, 0.1);
+    color: var(--primary-color);
+}
+        
+.sidebar .nav-link.active {
+    background-color: var(--primary-color);
+    color: white !important;
+}
+        
+.sidebar .nav-link i {
+    margin-right: 0.5rem;
+}
+        
+.card {
+    border: none;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+        
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+}
+        
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #f8f9fc;
+    font-weight: 600;
+}
+        
+.dashboard-title {
+    color: var(--dark-color);
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+        
+.stat-card {
+    border-left: 0.25rem solid;
+}
+        
+.stat-card.primary {
+    border-left-color: var(--primary-color);
+}
+        
+.stat-card.success {
+    border-left-color: var(--secondary-color);
+}
+        
+.stat-card .card-text {
+    font-size: 1.1rem;
+}
+        
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+        
+.btn-primary:hover {
+    background-color: #3a5bd9;
+    border-color: #3a5bd9;
+}
+        
+.leave-type-fields {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+        
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        
+@media (max-width: 768px) {
+    .sidebar {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    
+    .profile-img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}

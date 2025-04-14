@@ -6,115 +6,7 @@
     <title>Employee Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --sidebar-bg: #f8f9fa;
-            --primary-color: #4e73df;
-            --secondary-color: #1cc88a;
-            --dark-color: #5a5c69;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fc;
-        }
-        
-        .sidebar {
-            background-color: var(--sidebar-bg);
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-            transition: all 0.3s;
-        }
-        
-        .sidebar .profile-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-        }
-        
-        .sidebar .nav-link {
-            color: var(--dark-color);
-            border-radius: 0.35rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .sidebar .nav-link:hover {
-            background-color: rgba(78, 115, 223, 0.1);
-            color: var(--primary-color);
-        }
-        
-        .sidebar .nav-link.active {
-            background-color: var(--primary-color);
-            color: white !important;
-        }
-        
-        .sidebar .nav-link i {
-            margin-right: 0.5rem;
-        }
-        
-        .card {
-            border: none;
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
-        }
-        
-        .card-header {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            background-color: #f8f9fc;
-            font-weight: 600;
-        }
-        
-        .dashboard-title {
-            color: var(--dark-color);
-            font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .stat-card {
-            border-left: 0.25rem solid;
-        }
-        
-        .stat-card.primary {
-            border-left-color: var(--primary-color);
-        }
-        
-        .stat-card.success {
-            border-left-color: var(--secondary-color);
-        }
-        
-        .stat-card .card-text {
-            font-size: 1.1rem;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .btn-primary:hover {
-            background-color: #3a5bd9;
-            border-color: #3a5bd9;
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                height: auto;
-                padding-bottom: 20px;
-            }
-            
-            .profile-img {
-                width: 80px !important;
-                height: 80px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -124,13 +16,24 @@
             <div class="col-lg-3 col-md-4 sidebar p-0">
                 <div class="d-flex flex-column h-100 p-4">
                     <div class="text-center mb-4">
-                        <img src="" alt="Employee Picture" class="profile-img rounded-circle mb-3">
-                        <h4>Nathaniel Mamucod</h4>
+                        <img src="assets/img/profile.jpg" alt="Employee Picture" class="profile-img rounded-circle mb-3">
+                        <h4>Nathaiel Manio Jr.</h4>
                         <p class="text-muted mb-4">Software Engineer</p>
                     </div>
                     
                     <hr class="my-2">
                     
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-auto text-center text-muted small">
+                        <p>© 2025 Redline Vanguard</p>
+                    </div>
                 </div>
             </div>
 
@@ -146,10 +49,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h5 class="card-title text-primary">Sick Leave</h5>
-                                        <p class="card-text">Available: <strong>5 days</strong></p>
-                                    </div>
-                                    <div class="bg-primary bg-opacity-10 p-3 rounded">
-                                        <i class="bi bi-thermometer-snow text-primary" style="font-size: 1.5rem;"></i>
+                                        <p class="card-text">Per month: <strong>1.25</strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -161,25 +61,43 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h5 class="card-title text-success">Vacation Leave</h5>
-                                        <p class="card-text">Available: <strong>10 days</strong></p>
-                                    </div>
-                                    <div class="bg-success bg-opacity-10 p-3 rounded">
-                                        <i class="bi bi-umbrella text-success" style="font-size: 1.5rem;"></i>
+                                        <p class="card-text">Per month: <strong>1.25</strong></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 mb-4">
-                        <div class="card h-100">
+                        <div class="card stat-card success h-100">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h5 class="card-title text-dark">Total Leave Taken</h5>
-                                        <p class="card-text">This year: <strong>7 days</strong></p>
+                                        <h5 class="card-title text-success">CTO Leave</h5>
+                                        <p class="card-text">Per month: <strong>1.25</strong></p>
                                     </div>
-                                    <div class="bg-warning bg-opacity-10 p-3 rounded">
-                                        <i class="bi bi-calendar-week text-warning" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card stat-card success h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="card-title text-success">Special Privilege Leave</h5>
+                                        <p class="card-text">Per month: <strong>1.25</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card stat-card success h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="card-title text-dark">Number of Working Days</h5>
+                                        <p class="card-text">Per month: <strong>1.25</strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -194,46 +112,180 @@
                     </div>
                     <div class="card-body">
                         <form action="/submit-leave" method="POST">
-                        
-                        <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="commutation" class="form-label">Commutation</label>
-                            <input type="text" class="form-control" id="commutation" name="commutation" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                           <label for="inclusivedate" class="form-label">Inclusive Date/label>
-                            <input type="date" class="form-control" id="inclusivedate" name="inclusivedate" required>
-                        </div>
-                        </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="leaveType" class="form-label">Type of Leave</label>
-                                    <select class="form-select" id="leaveType" name="leaveType" required>
-                                        <option value="" disabled selected>Select Type of Leave</option>
-                                        <option value="sick">Sick Leave</option>
+                                    <select class="form-select" id="leaveType" name="leaveType" required onchange="showLeaveFields()">
+                                        <option value="" disabled selected>Select Leave Type</option>
                                         <option value="vacation">Vacation Leave</option>
-                                        <option value="personal">Personal Leave</option>
+                                        <option value="vacation">Mandatory/Forced Leave</option>
+                                        <option value="sick">Sick Leave</option>
+                                        <option value="maternity">Maternity/Paternity Leave</option>
+                                        <option value="">Special Privilege Leave</option>
+                                        <option value="solo">Solo Parent Leave</option>
+                                        <option value="study">Study Leave</option>
+                                        <option value="">10-Day VAWC</option>
+                                        <option value="">Rehabilitation Privilege</option>
+                                        <option value="special">Special Leave Benefits for Women</option>
+                                        <option value="emergency">Special Emergency</option>
+                                        <option value="adaption">Adaption Leave</option>
+
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="leaveDate" class="form-label">Date</label>
+                                    <label for="leaveDate" class="form-label">Date of Filling</label>
                                     <input type="date" class="form-control" id="leaveDate" name="leaveDate" required>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="startTime" class="form-label">Start Time</label>
-                                    <input type="time" class="form-control" id="startTime" name="startTime">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="endTime" class="form-label">End Time</label>
-                                    <input type="time" class="form-control" id="endTime" name="endTime">
-                                </div>
-                            </div>
+                            
+                            <!-- Sick Leave Specific Fields -->
+                            <div id="sickLeaveFields" class="leave-type-fields">
                             <div class="mb-3">
-                                <label for="leaveReason" class="form-label">Reason for Leave</label>
-                                <textarea class="form-control" id="leaveReason" name="leaveReason" rows="3" required placeholder="Please provide details about your leave request"></textarea>
+                            <label for="incase" class="form-label">In case Sick Leave</label>
+                            <select class="form-select" id="incase" name="incase">
+                                <option value="">In Hospital</option>
+                                <option value="">Out Patient</option>
+                            </select>
                             </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="doctorNote" class="form-label">Doctor's Note Required?</label>
+                                        <select class="form-select" id="doctorNote" name="doctorNote">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="illnessType" class="form-label">Type of Illness</label>
+                                        <input type="text" class="form-control" id="illnessType" name="illnessType" placeholder="e.g. Flu, Injury, etc.">
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="doctorNoteAttachment" style="display: none;">
+                                    <label for="leaveAttachment" class="form-label">Upload Doctor's Note</label>
+                                    <input type="file" class="form-control" id="leaveAttachment" name="leaveAttachment" accept=".pdf,.doc,.docx,.jpg,.png">
+                                </div>
+                            </div>
+                            
+                            <!-- Vacation Leave Specific Fields -->
+                            <div id="vacationLeaveFields" class="leave-type-fields">
+                                <div class="row">
+                                <label for="vacationLocation" class="form-label">Vacation Location</label>
+                                    <div class="col-md-6 mb-3">
+                                        <select class="form-select" id="vacationLocation" name="vacationLocation">
+                                            <option value="">Select location</option>
+                                            <option value="local">Within the Philippines</option>
+                                            <option value="abroad">Abroad</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" id="vacationLocation" name="vacationLocation" placeholder="Where are you going?">
+                                        </div>
+                                    </div>
+                                </div>
+                                                        
+                            <!-- Special Leave Benefits for Women Specific Fields -->
+                            <div id="specialLeaveBenefitFields" class="leave-type-fields">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="doctorNote" class="form-label">Doctor's Note Required?</label>
+                                        <select class="form-select" id="doctorNote" name="doctorNote">
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="illnessType" class="form-label">Type of Illness</label>
+                                        <input type="text" class="form-control" id="illnessType" name="illnessType" placeholder="e.g. Flu, Injury, etc.">
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="doctorNoteAttachment" style="display: block;">
+                                    <label for="leaveAttachment" class="form-label">Upload Doctor's Note</label>
+                                    <input type="file" class="form-control" id="leaveAttachment" name="leaveAttachment" accept=".pdf,.doc,.docx,.jpg,.png">
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Maternity/Paternity Leave Specific Fields -->
+                            <div id="maternityLeaveFields" class="leave-type-fields">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="expectedDate" class="form-label">Expected Date of Birth</label>
+                                        <input type="date" class="form-control" id="expectedDate" name="expectedDate">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="leaveDuration" class="form-label">Requested Leave Duration (days)</label>
+                                        <input type="number" class="form-control" id="leaveDuration" name="leaveDuration" min="1" max="12">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Study Leave Specific Fields -->
+                            <div id="studyLeaveFields" class="leave-type-fields">
+                                    <div class="mb-3">
+                                        <label for="expectedDate" class="form-label">In case of Study Leave</label>
+                                        <select class="form-select" id="vacationLocation" name="vacationLocation">
+                                            <option value="">Select Study Leave Field</option>
+                                            <option value="local">Completion of Master's Degree</option>
+                                            <option value="abroad">BAR/Board Examination Review</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <!-- Personal Leave Specific Fields -->
+                            <div id="personalLeave" class="personalLeave">
+                            <div class="row">
+                                <label class="form-label">Leave Date Selection</label>
+
+                                <!-- Radio buttons to choose selection type -->
+                                <div class="col-12 mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="leaveType" id="singleDay" value="single" checked>
+                                        <label class="form-check-label" for="singleDay">Single Day</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="leaveType" id="multipleDays" value="multiple">
+                                        <label class="form-check-label" for="multipleDays">Multiple Days</label>
+                                    </div>
+                                </div>
+
+                                <!-- Single day selection with AM/PM (shown by default) -->
+                                <div class="col-md-12 mb-3" id="singleDaySection">
+                                    <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="leaveDateSingle" class="form-label">Leave Date</label>
+                                        <input type="date" class="form-control" id="leaveDateSingle" name="leaveDateSingle" min="">
+                                    </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Time Period</label>
+                                            <div class="d-flex m-1">
+                                                <div class="form-check me-3">
+                                                    <input class="form-check-input" type="radio" name="timePeriod" id="amPeriod" value="AM" checked>
+                                                    <label class="form-check-label" for="amPeriod">AM (Morning)</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="timePeriod" id="pmPeriod" value="PM">
+                                                    <label class="form-check-label" for="pmPeriod">PM (Afternoon)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Multiple days selection (hidden by default) -->
+                                <div class="col-md-12 mb-3" id="multipleDaysSection" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leaveDateStart" class="form-label">From Date</label>
+                                            <input type="date" class="form-control" id="leaveDateStart" name="leaveDateStart" min="">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="leaveDateEnd" class="form-label">To Date</label>
+                                            <input type="date" class="form-control" id="leaveDateEnd" name="leaveDateEnd">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary px-4">
                                     <i class="bi bi-send-fill me-2"></i>Submit Request
@@ -242,7 +294,6 @@
                         </form>
                     </div>
                 </div>
-                
                 <!-- Recent Activity -->
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
@@ -293,18 +344,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Simple script to highlight active nav item
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        });
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
