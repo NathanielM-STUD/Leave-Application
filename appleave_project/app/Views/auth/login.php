@@ -1,94 +1,92 @@
+<!-- app/Views/auth/login.php -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
-    <!-- Bootstradp CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS for additional styling -->
+    <!-- Linking Bootstrap for responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Custom style for elegant design */
         body {
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
-
-        .form-container {
-            background-color: #fff;
-            padding: 30px;
+        .card {
+            border-radius: 15px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        .form-control {
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 0 auto;
-            margin-top: 50px;
         }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
+        .btn-success {
+            background-color: #28a745;
+            border: none;
         }
-
-        .form-container input {
-            border-radius: 5px;
-        }
-
-        .form-container .btn {
-            width: 100%;
-            padding: 10px;
+        .btn-success:hover {
+            background-color: #218838;
         }
     </style>
-</head>
-
-<body>
-
-    <div class="form-container">
-        <h2>Login</h2>
-
-        <?php if (session()->getFlashdata('error')) : ?>
-            <div class="alert alert-danger">
-                <?= session()->getFlashdata('error') ?>
-            </div>
-        <?php endif; ?>
-
-        <form action="/authenticate" method="post">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-
-        <p class="text-center mt-3">Don't have an account? <a href="/register">Register here</a></p>
-    </div>
-
-    <!-- Bootstrap JS and Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-    <!-- Custom JS for Validation -->
     <script>
-        // Form validation for login
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            let email = document.getElementById('email').value;
-            let password = document.getElementById('password').value;
+        // Password validation function
+        function validateLoginForm() {
+            const password = document.getElementById('password').value;
+            const regex = /^(?=(?:.*[A-Za-z]){6,})(?=(?:.*\d){2,}).+$/;
 
-            if (!email || !password) {
-                alert('Please fill in both fields.');
-                e.preventDefault();
+            if (!regex.test(password)) {
+                alert('Password must contain at least 6 letters and 2 numbers.');
                 return false;
             }
-        });
+
+            return true;
+        }
     </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <!-- Card container for the form -->
+                <div class="card shadow-lg">
+                    <div class="card-header text-center">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Display any error or success messages if present -->
+                        <?php if (session()->getFlashdata('error')): ?>
+                            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+                        <?php elseif (session()->getFlashdata('success')): ?>
+                            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+                        <?php endif; ?>
 
+                        <!-- Login form starts here -->
+                        <form action="/authenticate" method="POST" onsubmit="return validateLoginForm();">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" required class="form-control" placeholder="Enter your email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" id="password" required class="form-control" placeholder="Enter your password">
+                            </div>
+
+                            <!-- Submit button with full width -->
+                            <button type="submit" class="btn btn-success w-100">Login</button>
+
+                            <!-- Link to register page if user doesn't have an account -->
+                            <p class="mt-3 text-center">Don't have an account? <a href="/register">Register</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

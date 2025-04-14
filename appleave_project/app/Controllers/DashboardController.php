@@ -1,20 +1,14 @@
 <?php
 
+// app/Controllers/Dashboard.php
+
 namespace App\Controllers;
 
-class DashboardController extends BaseController
+class Dashboard extends BaseController
 {
-    public function __construct()
-    {
-        // Ensure that the user is logged in to access the dashboardqq
-        if (!session()->get('is_logged_in')) {
-            return redirect()->to('/login'); // Redirect to login if not logged in
-        }
-    }
-
     public function index()
     {
-        // Return the dashboard view from the 'employee' folder
-        return view('employee/dashboard'); // This is your dashboard view
+        return view('auth/dashboard'); // assuming you placed it in app/Views/auth/dashboard.php
     }
 }
+
